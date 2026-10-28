@@ -14,23 +14,32 @@ fun main() {
         print("Enter course: ")
         val course = readln()
 
-        val student = Student(id, name, course)
+        print("Student type (1 = Undergraduate, 2 = Masters): ")
+        val type = readln()
+
+        val student: Student = when (type) {
+            "1" -> Undergraduate(id, name, course)
+            "2" -> Masters(id, name, course)
+            else -> {
+                println("Invalid student type.")
+                continue
+            }
+        }
 
         print("Enter mark (0-100): ")
-        val inputMark = readln().toDoubleOrNull()
+        val mark = readln().toDoubleOrNull()
 
-        if (inputMark == null) {
-            println("Invalid number. Please try again.")
+        if (mark == null) {
+            println("Invalid mark.")
             continue
         }
 
-        student.mark = inputMark
+        student.mark = mark
 
         println()
         println("Student Status")
         println("--------------")
         println(student)
-        println("Mark: ${student.mark}")
         println("Grade: ${student.getGrade()}")
         println("Passed: ${student.didPass()}")
         println()
