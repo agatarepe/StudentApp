@@ -14,17 +14,25 @@ fun main() {
         print("Enter course: ")
         val course = readln()
 
-        print("Enter mark: ")
-        val mark = readln().toDoubleOrNull()
+        val student = Student(id, name, course)
 
-        if (mark == null) {
-            println("Invalid mark. Please try again.")
+        print("Enter mark (0-100): ")
+        val inputMark = readln().toDoubleOrNull()
+
+        if (inputMark == null) {
+            println("Invalid number. Please try again.")
             continue
         }
 
-        val student = Student(id, name, course, mark)
+        student.mark = inputMark
 
+        println()
+        println("Student Status")
+        println("--------------")
         println(student)
+        println("Mark: ${student.mark}")
+        println("Grade: ${student.getGrade()}")
+        println("Passed: ${student.didPass()}")
         println()
     }
 
